@@ -4,6 +4,9 @@
  * form validations, dark/light theme switching, and scroll effects.
  */
 
+// Initialize EmailJS
+emailjs.init('uf2InGcg4BykyjZFp');
+
 document.addEventListener('DOMContentLoaded', () => {
 
   /* ==========================================================================
@@ -392,22 +395,46 @@ document.addEventListener('DOMContentLoaded', () => {
           document.head.appendChild(style);
         }
 
-        // Simulate network API delay
-        setTimeout(() => {
-          // Success Feedback
-          formStatus.className = 'form-status success';
-          formStatus.innerHTML = `<span class="bold">Success!</span> Thank you, ${escapeHTML(formName.value)}. Your message has been sent successfully. I will get back to you shortly!`;
-          
-          // Reset form fields
-          contactForm.reset();
-          btnSubmit.disabled = false;
-          btnSubmit.innerHTML = originalText;
-          
-          // Clear status after 8 seconds
-          setTimeout(() => {
-            formStatus.style.display = 'none';
-          }, 8000);
-        }, 1500);
+        // Build template parameters matching EmailJS template variables
+        const now = new Date();
+        const timeString = now.toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' });
+
+        const templateParams = {
+          name: formName.value.trim(),
+          email: formEmail.value.trim(),
+          subject: formSubject.value.trim(),
+          message: formMessage.value.trim(),
+          time: timeString
+        };
+
+        // Send email via EmailJS
+        emailjs.send('service_dxl1907', 'template_e5bnmh5', templateParams)
+          .then(() => {
+            // Success Feedback
+            formStatus.style.display = '';
+            formStatus.className = 'form-status success';
+            formStatus.innerHTML = `<span class="bold">Success!</span> Thank you, ${escapeHTML(formName.value.trim())}. Your message has been sent successfully. I will get back to you shortly!`;
+
+            // Reset form fields
+            contactForm.reset();
+            btnSubmit.disabled = false;
+            btnSubmit.innerHTML = originalText;
+
+            // Clear status after 8 seconds
+            setTimeout(() => {
+              formStatus.style.display = 'none';
+            }, 8000);
+          })
+          .catch((error) => {
+            // Error Feedback
+            formStatus.style.display = '';
+            formStatus.className = 'form-status error';
+            formStatus.innerHTML = `<span class="bold">Oops!</span> Something went wrong. Please try again or email me directly at <a href="mailto:malindusankalpa03@gmail.com" style="color:inherit;text-decoration:underline;">malindusankalpa03@gmail.com</a>.`;
+            console.error('EmailJS error:', error);
+
+            btnSubmit.disabled = false;
+            btnSubmit.innerHTML = originalText;
+          });
       } else {
         // Scroll to the first error input
         const firstError = document.querySelector('.form-feedback.error');
