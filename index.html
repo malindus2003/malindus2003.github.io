@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Malindu Sankalpa | Full-Stack Developer Portfolio</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Professional portfolio of Malindu Sankalpa, an Information Technology undergraduate & full-stack developer experienced in Java, Spring Boot, ReactJS, Node.js, and databases.">
+  <meta name="keywords" content="Malindu Sankalpa, Full-Stack Developer, Spring Boot, ReactJS, Node.js, Web Development, Java Developer, Sri Lanka, SLIIT">
+  <meta name="author" content="Malindu Sankalpa">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Malindu Sankalpa | Full-Stack Developer Portfolio">
+  <meta property="og:description" content="Explore my portfolio showcasing scalable full-stack web applications, dynamic UIs, and robust backend integrations.">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="Malindu Sankalpa | Full-Stack Developer Portfolio">
+  <meta property="twitter:description" content="Explore my portfolio showcasing scalable full-stack web applications, dynamic UIs, and robust backend integrations.">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Background Orbs for dynamic glowing visual experience -->
+  <div class="bg-glows" aria-hidden="true">
+    <div class="glow-orb glow-orb-1"></div>
+    <div class="glow-orb glow-orb-2"></div>
+    <div class="glow-orb glow-orb-3"></div>
+  </div>
+
+  <!-- Header & Navigation -->
+  <header class="header" id="header">
+    <div class="container nav-container">
+      <a href="#home" class="logo" id="nav-logo">
+        Malindu<span>.dev</span>
+      </a>
+      
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu" id="nav-menu">
+          <li><a href="#home" class="nav-link active">Home</a></li>
+          <li><a href="#terminal" class="nav-link">Terminal</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#education" class="nav-link">Education</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="d-flex align-items-center">
+        <!-- Theme Toggle Button -->
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle light/dark theme" title="Toggle theme">
+          <svg class="moon-icon" viewBox="0 0 24 24">
+            <path d="M12 3c.132 0 .263 0 .393.007a7.5 7.5 0 0 0 7.92 12.446A9 9 0 1 1 12 3zm0 2a7 7 0 1 0 5.46 11.39 9.501 9.501 0 0 1-7.85-8.868A7.017 7.017 0 0 0 12 5z"/>
+          </svg>
+          <svg class="sun-icon" viewBox="0 0 24 24">
+            <path d="M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm0-7a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0V3a1 1 0 0 1 1-1zm0 16a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0v-2a1 1 0 0 1 1-1zM5.636 4.222a1 1 0 0 1 1.414 0l1.414 1.414a1 1 0 1 1-1.414 1.414L5.636 5.636a1 1 0 0 1 0-1.414zm11.314 11.314a1 1 0 0 1 1.414 0l1.414 1.414a1 1 0 0 1-1.414 1.414l-1.414-1.414a1 1 0 0 1 0-1.414zM2 12a1 1 0 0 1 1-1h2a1 1 0 0 1 0 2H3a1 1 0 0 1-1-1zm16 0a1 1 0 0 1 1-1h2a1 1 0 0 1 0 2h-2a1 1 0 0 1-1-1zM5.636 19.778a1 1 0 0 1 0-1.414l1.414-1.414a1 1 0 1 1 1.414 1.414l-1.414 1.414a1 1 0 0 1-1.414 0zm11.314-11.314a1 1 0 0 1 0-1.414l1.414-1.414a1 1 0 0 1 1.414 1.414l-1.414 1.414a1 1 0 0 1-1.414 0z"/>
+          </svg>
+        </button>
+
+        <!-- Mobile Menu Toggle Burger -->
+        <button id="mobile-toggle" class="mobile-nav-toggle" aria-label="Toggle navigation menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <span class="hero-tag">Available for Opportunities</span>
+          <h1 class="hero-title">
+            Hi, I'm <br><span>Malindu Sankalpa</span>
+          </h1>
+          <div class="hero-subtitle">
+            I build <span id="typewriter"></span><span class="typed-cursor" aria-hidden="true">|</span>
+          </div>
+          <p class="hero-description">
+            Information Technology undergraduate specializing in full-stack engineering. I design and build highly efficient systems, scalable backend architectures, and responsive user-centric web applications.
+          </p>
+          <div class="hero-cta">
+            <a href="#projects" class="btn btn-primary" id="btn-hero-projects">
+              Explore Projects
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+            <a href="#contact" class="btn btn-secondary" id="btn-hero-contact">Contact Me</a>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="visual-backdrop"></div>
+          <div class="visual-sphere">
+            <div class="visual-inner">
+              <img src="profile.jpg" alt="Malindu Sankalpa" class="profile-img">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Terminal Section -->
+  <section class="terminal-section" id="terminal">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Developer Console</span>
+        <h2 class="section-title">Interactive Terminal</h2>
+      </div>
+
+      <div class="terminal-window">
+        <div class="terminal-header">
+          <div class="terminal-dots">
+            <div class="terminal-dot dot-red"></div>
+            <div class="terminal-dot dot-yellow"></div>
+            <div class="terminal-dot dot-green"></div>
+          </div>
+          <div class="terminal-title">malindu@portfolio:~</div>
+          <div></div>
+        </div>
+        <div class="terminal-body" id="terminal-body">
+          <div class="terminal-line">Welcome to Malindu's Interactive CLI! Type <span class="highlight-cyan bold">help</span> to list all commands.</div>
+          <div class="terminal-prompt-line">
+            <span class="terminal-prompt-sym">➜</span>
+            <span class="terminal-user">guest@malindu.dev</span>
+            <span class="terminal-command">:~</span>
+            <span class="highlight-cyan bold" style="margin-left: 0.5rem;">help</span>
+          </div>
+          <div class="terminal-output">
+            Available commands:<br>
+            - <span class="highlight-cyan">about</span>       : Show brief professional bio<br>
+            - <span class="highlight-cyan">skills</span>      : List categorized technical proficiencies<br>
+            - <span class="highlight-cyan">projects</span>    : Detailed summary of full-stack systems<br>
+            - <span class="highlight-cyan">education</span>   : Academic background & details<br>
+            - <span class="highlight-cyan">contact</span>     : Contact details & socials links<br>
+            - <span class="highlight-cyan">clear</span>       : Flush terminal display
+          </div>
+          
+          <div class="terminal-history" id="terminal-history">
+            <!-- Dynamic terminal lines will append here -->
+          </div>
+
+          <div class="terminal-input-row">
+            <span class="terminal-prompt-sym">➜</span>
+            <span class="terminal-user">guest@malindu.dev</span>
+            <span class="terminal-command">:~</span>
+            <input type="text" class="terminal-input-field" id="terminal-input" autocomplete="off" aria-label="Terminal command input" placeholder="Type a command...">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">My Creations</span>
+        <h2 class="section-title">Full-Stack Experience</h2>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div class="filter-tabs">
+        <button class="filter-btn active" data-filter="all">All Projects</button>
+        <button class="filter-btn" data-filter="java">Java &amp; Spring Boot</button>
+        <button class="filter-btn" data-filter="node">Node.js &amp; ReactJS</button>
+      </div>
+
+      <!-- Projects Grid -->
+      <div class="grid grid-3" id="projects-grid">
+        
+        <!-- Project 1: UniConnect -->
+        <article class="glass-card project-card" data-category="node" id="project-uniconnect">
+          <div class="project-icon-wrapper">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <h3 class="project-title">UniConnect</h3>
+          <p class="project-description">
+            A comprehensive university event management and logistics platform engineered to streamline society administrative operations and student engagements.
+          </p>
+          <ul class="project-bullet-list">
+            <li class="project-bullet-item">Secure authentication & role-based access control with JWT/Bcrypt</li>
+            <li class="project-bullet-item">Automated bank slip validation via Google Gemini AI OCR integration</li>
+            <li class="project-bullet-item">Interactive event booking, ticketing systems, and transport booking</li>
+          </ul>
+          <div class="project-tags">
+            <span class="project-tag">Node.js</span>
+            <span class="project-tag">ReactJS</span>
+            <span class="project-tag">MongoDB</span>
+            <span class="project-tag">Gemini AI</span>
+            <span class="project-tag">Tailwind</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/ThulyaRodrigo/UniConnect" target="_blank" rel="noopener noreferrer" class="project-link" id="link-uniconnect-src">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+              </svg>
+              Source Code
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 2: EduReserve -->
+        <article class="glass-card project-card" data-category="java" id="project-edureserve">
+          <div class="project-icon-wrapper">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="9" y1="3" x2="9" y2="21"></line>
+              <line x1="15" y1="3" x2="15" y2="21"></line>
+              <line x1="3" y1="9" x2="21" y2="9"></line>
+              <line x1="3" y1="15" x2="21" y2="15"></line>
+            </svg>
+          </div>
+          <h3 class="project-title">EduReserve</h3>
+          <p class="project-description">
+            A smart resource management platform enabling campus admins and students to coordinate booking and venue logistics seamlessly.
+          </p>
+          <ul class="project-bullet-list">
+            <li class="project-bullet-item">Built backend microservices using Spring Boot &amp; Spring Data JPA</li>
+            <li class="project-bullet-item">Secured with Google OAuth2, JWT, and custom role authentications</li>
+            <li class="project-bullet-item">QR Code integration for rapid physical check-ins and confirmation</li>
+          </ul>
+          <div class="project-tags">
+            <span class="project-tag">Java</span>
+            <span class="project-tag">Spring Boot</span>
+            <span class="project-tag">ReactJS</span>
+            <span class="project-tag">MySQL</span>
+            <span class="project-tag">OAuth2</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/malindus2003/EduRequest" target="_blank" rel="noopener noreferrer" class="project-link" id="link-edureserve-src">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+              </svg>
+              Source Code
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 3: E-Commerce System -->
+        <article class="glass-card project-card" data-category="node" id="project-ecommerce">
+          <div class="project-icon-wrapper">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="9" cy="21" r="1"></circle>
+              <circle cx="20" cy="21" r="1"></circle>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+          </div>
+          <h3 class="project-title">E-Commerce System</h3>
+          <p class="project-description">
+            A production-ready retail platform scaling e-commerce processes, inventory tracking, and dynamic order processing pipelines.
+          </p>
+          <ul class="project-bullet-list">
+            <li class="project-bullet-item">Robust database design with optimized indexing in MongoDB</li>
+            <li class="project-bullet-item">Containerized microservices using Docker for simple dev setups</li>
+            <li class="project-bullet-item">Automated CI/CD workflows utilizing GitHub Actions pipelines</li>
+          </ul>
+          <div class="project-tags">
+            <span class="project-tag">Express.js</span>
+            <span class="project-tag">ReactJS</span>
+            <span class="project-tag">MongoDB</span>
+            <span class="project-tag">Docker</span>
+            <span class="project-tag">CI/CD</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/malindus2003/Dataverse" target="_blank" rel="noopener noreferrer" class="project-link" id="link-ecommerce-src">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+              </svg>
+              Source Code
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical Skills Section -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Technical Stack</span>
+        <h2 class="section-title">Skills &amp; Capabilities</h2>
+      </div>
+
+      <div class="skills-container">
+        
+        <!-- Programming -->
+        <div class="glass-card skills-category" id="skills-programming">
+          <h3 class="category-title">
+            <svg class="category-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"></polyline>
+              <polyline points="8 6 2 12 8 18"></polyline>
+            </svg>
+            Programming Languages
+          </h3>
+          <div class="skills-list">
+            <div class="skill-badge">Java</div>
+            <div class="skill-badge">JavaScript</div>
+            <div class="skill-badge">Python</div>
+            <div class="skill-badge">PHP</div>
+            <div class="skill-badge">C/C++</div>
+          </div>
+        </div>
+
+        <!-- Frontend -->
+        <div class="glass-card skills-category" id="skills-frontend">
+          <h3 class="category-title">
+            <svg class="category-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+            Frontend Web
+          </h3>
+          <div class="skills-list">
+            <div class="skill-badge">ReactJS</div>
+            <div class="skill-badge">HTML5</div>
+            <div class="skill-badge">CSS3</div>
+            <div class="skill-badge">Tailwind CSS</div>
+            <div class="skill-badge">Material-UI</div>
+          </div>
+        </div>
+
+        <!-- Backend -->
+        <div class="glass-card skills-category" id="skills-backend">
+          <h3 class="category-title">
+            <svg class="category-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+              <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+              <line x1="6" y1="6" x2="6.01" y2="6"></line>
+              <line x1="6" y1="18" x2="6.01" y2="18"></line>
+            </svg>
+            Backend &amp; APIs
+          </h3>
+          <div class="skills-list">
+            <div class="skill-badge">Spring Boot</div>
+            <div class="skill-badge">Node.js</div>
+            <div class="skill-badge">Express.js</div>
+            <div class="skill-badge">REST APIs</div>
+          </div>
+        </div>
+
+        <!-- Databases -->
+        <div class="glass-card skills-category" id="skills-databases">
+          <h3 class="category-title">
+            <svg class="category-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+              <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+              <path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"></path>
+            </svg>
+            Databases
+          </h3>
+          <div class="skills-list">
+            <div class="skill-badge">MongoDB</div>
+            <div class="skill-badge">MySQL</div>
+            <div class="skill-badge">Database Design</div>
+          </div>
+        </div>
+
+        <!-- DevOps & Tools -->
+        <div class="glass-card skills-category" id="skills-devops">
+          <h3 class="category-title">
+            <svg class="category-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+            DevOps &amp; Tools
+          </h3>
+          <div class="skills-list">
+            <div class="skill-badge">Git</div>
+            <div class="skill-badge">GitHub</div>
+            <div class="skill-badge">Docker</div>
+            <div class="skill-badge">CI/CD</div>
+            <div class="skill-badge">GitHub Actions</div>
+          </div>
+        </div>
+
+        <!-- Cloud & Authentication -->
+        <div class="glass-card skills-category" id="skills-integrations">
+          <h3 class="category-title">
+            <svg class="category-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+            </svg>
+            Cloud &amp; Security
+          </h3>
+          <div class="skills-list">
+            <div class="skill-badge">Google Gemini AI</div>
+            <div class="skill-badge">Cloudinary</div>
+            <div class="skill-badge">JWT</div>
+            <div class="skill-badge">Google OAuth2</div>
+            <div class="skill-badge">Bcrypt.js</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Education & Experience Timeline -->
+  <section id="education">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">My Academic Journey</span>
+        <h2 class="section-title">Education &amp; Credentials</h2>
+      </div>
+
+      <div class="timeline">
+        
+        <!-- SLIIT -->
+        <div class="timeline-item" id="edu-sliit">
+          <div class="timeline-dot-wrapper">
+            <div class="timeline-dot-inner"></div>
+          </div>
+          <div class="glass-card timeline-content">
+            <span class="timeline-date">June 2023 -- Present</span>
+            <h3 class="timeline-title">Sri Lanka Institute of Information Technology</h3>
+            <div class="timeline-subtitle">BSc (Hons) in Information Technology Specializing in IT</div>
+            <ul class="timeline-list">
+              <li class="timeline-list-item">Robust academic foundation in <span class="bold">Data Structures, Algorithms, Object-Oriented Programming (OOP)</span>, and <span class="bold">Database Management Systems</span>.</li>
+              <li class="timeline-list-item">Advanced coursework: <span class="bold">Web Application Engineering, Software Engineering Methodologies, Data Science &amp; Analytics</span>.</li>
+              <li class="timeline-list-item">Engaged in collaborative software projects utilizing Agile methodologies, version control (Git), and CI/CD pipelines.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Professional Attributes Section -->
+  <section class="competencies-section">
+    <div class="container">
+      <div class="attributes-grid">
+        
+        <!-- Column 1: Core Technical Competencies -->
+        <div class="glass-card attribute-box" id="competencies-technical">
+          <h3 class="attribute-box-title">Core Technical Competencies</h3>
+          <ul class="attribute-list">
+            <li class="attribute-item">
+              <svg class="attribute-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span><span class="bold">Software Development Life Cycle</span> (SDLC) models</span>
+            </li>
+            <li class="attribute-item">
+              <svg class="attribute-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span><span class="bold">Object-Oriented Programming</span> (OOP) &amp; Design Patterns</span>
+            </li>
+            <li class="attribute-item">
+              <svg class="attribute-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span><span class="bold">Database Schema Design</span> &amp; Query Optimization</span>
+            </li>
+            <li class="attribute-item">
+              <svg class="attribute-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span><span class="bold">REST API Development</span> &amp; Microservices Architecture</span>
+            </li>
+            <li class="attribute-item">
+              <svg class="attribute-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span><span class="bold">Secure Authentication</span> &amp; Authorization (JWT, OAuth2)</span>
+            </li>
+            <li class="attribute-item">
+              <svg class="attribute-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span><span class="bold">Version Control</span> &amp; Collaborative Dev workflows</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Column 2: Professional Skills -->
+        <div class="glass-card attribute-box" id="competencies-professional">
+          <h3 class="attribute-box-title">Professional Skills &amp; Attributes</h3>
+          <ul class="attribute-list">
+            <li class="attribute-item">
+              <svg class="attribute-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span><span class="bold">Problem-Solving</span> &amp; Analytical thinking capacity</span>
+            </li>
+            <li class="attribute-item">
+              <svg class="attribute-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span><span class="bold">Software Testing</span>, QA, and systematic Debugging</span>
+            </li>
+            <li class="attribute-item">
+              <svg class="attribute-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span><span class="bold">Team Collaboration</span> &amp; Active communication skills</span>
+            </li>
+            <li class="attribute-item">
+              <svg class="attribute-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span><span class="bold">Agile Methodologies</span> (Scrum framework practices)</span>
+            </li>
+            <li class="attribute-item">
+              <svg class="attribute-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span><span class="bold">Continuous Learning</span> &amp; Adapting to emerging tech stacks</span>
+            </li>
+            <li class="attribute-item">
+              <svg class="attribute-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span><span class="bold">Project Management</span> &amp; Clean documentation writing</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Get in Touch</span>
+        <h2 class="section-title">Contact &amp; Connect</h2>
+      </div>
+
+      <div class="contact-grid">
+        
+        <!-- Contact Information -->
+        <div class="contact-info">
+          
+          <div class="contact-item" id="info-location">
+            <div class="contact-icon-box">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+            </div>
+            <div class="contact-details">
+              <span class="contact-label">Location</span>
+              <span class="contact-value">Tissamaharama, Sri Lanka</span>
+            </div>
+          </div>
+
+          <a href="mailto:malindusankalpa03@gmail.com" class="contact-item" id="info-email">
+            <div class="contact-icon-box">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+            </div>
+            <div class="contact-details">
+              <span class="contact-label">Email</span>
+              <span class="contact-value">malindusankalpa03@gmail.com</span>
+            </div>
+          </a>
+
+          <a href="tel:+94764729153" class="contact-item" id="info-mobile">
+            <div class="contact-icon-box">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                <line x1="12" y1="18" x2="12.01" y2="18"></line>
+              </svg>
+            </div>
+            <div class="contact-details">
+              <span class="contact-label">Mobile</span>
+              <span class="contact-value">+94 76 472 9153</span>
+            </div>
+          </a>
+
+          <div class="contact-item" id="info-references">
+            <div class="contact-icon-box">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+            </div>
+            <div class="contact-details">
+              <span class="contact-label">References</span>
+              <span class="contact-value">Available upon request</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Interactive Contact Form -->
+        <div class="glass-card contact-form-card">
+          <div id="form-status" class="form-status" aria-live="polite"></div>
+          <form id="contact-form" novalidate>
+            <div class="form-group-row">
+              <div class="form-group">
+                <label for="form-name" class="form-label">Your Name</label>
+                <input type="text" id="form-name" class="form-control" placeholder="John Doe" required>
+                <span class="form-feedback" id="feedback-name">Name is required</span>
+              </div>
+              <div class="form-group">
+                <label for="form-email" class="form-label">Email Address</label>
+                <input type="email" id="form-email" class="form-control" placeholder="john@example.com" required>
+                <span class="form-feedback" id="feedback-email">Please enter a valid email</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="form-subject" class="form-label">Subject</label>
+              <input type="text" id="form-subject" class="form-control" placeholder="Project Inquiry" required>
+              <span class="form-feedback" id="feedback-subject">Subject is required</span>
+            </div>
+            <div class="form-group">
+              <label for="form-message" class="form-label">Message</label>
+              <textarea id="form-message" class="form-control" placeholder="Hi Malindu, I would love to collaborate on..." required></textarea>
+              <span class="form-feedback" id="feedback-message">Message cannot be empty</span>
+            </div>
+            
+            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;" id="btn-submit">
+              Send Message
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <a href="#home" class="logo" id="footer-logo">
+        Malindu<span>.dev</span>
+      </a>
+      
+      <div class="footer-socials">
+        <!-- LinkedIn -->
+        <a href="https://www.linkedin.com/in/malindu-maddumage-5716a1352/" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="LinkedIn" id="link-footer-linkedin">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+            <rect x="2" y="9" width="4" height="12"></rect>
+            <circle cx="4" cy="4" r="2"></circle>
+          </svg>
+        </a>
+        <!-- GitHub -->
+        <a href="https://github.com/malindus2003" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="GitHub" id="link-footer-github">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+          </svg>
+        </a>
+      </div>
+
+      <p class="footer-text">
+        &copy; 2026 Malindu Sankalpa. Engineered with <span>&hearts;</span> in Sri Lanka.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Main JavaScript Logic -->
+  <script src="script.js"></script>
+</body>
+</html>
