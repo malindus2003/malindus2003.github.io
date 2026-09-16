@@ -146,8 +146,9 @@ document.addEventListener('DOMContentLoaded', () => {
         - <span class="highlight-cyan">about</span>       : Show brief professional bio<br>
         - <span class="highlight-cyan">skills</span>      : List categorized technical proficiencies<br>
         - <span class="highlight-cyan">projects</span>    : Detailed summary of full-stack systems<br>
-        - <span class="highlight-cyan">education</span>   : Academic background & details<br>
-        - <span class="highlight-cyan">contact</span>     : Contact details & socials links<br>
+        - <span class="highlight-cyan">experience</span>  : Work experience &amp; academic background<br>
+        - <span class="highlight-cyan">education</span>   : Academic background &amp; credentials<br>
+        - <span class="highlight-cyan">contact</span>     : Contact details &amp; socials links<br>
         - <span class="highlight-cyan">clear</span>       : Flush terminal display
       </div>
     `,
@@ -200,9 +201,17 @@ document.addEventListener('DOMContentLoaded', () => {
     `,
     education: `
       <div class="terminal-output">
+        <span class="highlight-cyan bold">[Work Experience]</span><br>
+        <span class="bold">Kangaroo Cabs (Pvt) Ltd</span><br>
+        &nbsp;&nbsp;<span class="highlight-blue">Frontend Development Intern</span><br>
+        &nbsp;&nbsp;<span class="text-muted">Present | Colombo, Sri Lanka</span><br>
+        &nbsp;&nbsp;• Developing and maintaining responsive web user interfaces for ride-hailing operations.<br>
+        &nbsp;&nbsp;• Collaborating with engineering teams to integrate frontend components with backend REST APIs.<br><br>
+        
+        <span class="highlight-cyan bold">[Academic Education]</span><br>
         <span class="bold">Sri Lanka Institute of Information Technology (SLIIT)</span><br>
-        &nbsp;&nbsp;<span class="highlight-cyan">BSc (Hons) in Information Technology Specializing in IT</span><br>
-        &nbsp;&nbsp;<span class="text-muted">June 2023 -- Present | Malabe, Sri Lanka</span><br><br>
+        &nbsp;&nbsp;<span class="highlight-blue">BSc (Hons) in Information Technology Specializing in IT</span><br>
+        &nbsp;&nbsp;<span class="text-muted">June 2023 -- Present | Malabe, Sri Lanka</span><br>
         &nbsp;&nbsp;• Excellent grasp of Data Structures, Algorithms, Object-Oriented Programming (OOP) and Database Design.<br>
         &nbsp;&nbsp;• Key coursework includes: Web Application Development, Software Engineering Architecture, Data Science.
       </div>
@@ -217,6 +226,7 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
     `
   };
+  commands.experience = commands.education;
 
   const handleCommandInput = (e) => {
     if (e.key === 'Enter') {
