@@ -160,15 +160,15 @@ document.addEventListener('DOMContentLoaded', () => {
     skills: `
       <div class="terminal-output">
         <span class="highlight-purple bold">[Programming Languages]</span><br>
-        &nbsp;&nbsp;Java, JavaScript, Python, PHP, C/C++<br><br>
-        <span class="highlight-purple bold">[Frontend Stack]</span><br>
-        &nbsp;&nbsp;ReactJS, HTML5, CSS3, Tailwind CSS, Material-UI<br><br>
+        &nbsp;&nbsp;Java, Kotlin, JavaScript, Python, PHP, C/C++<br><br>
+        <span class="highlight-purple bold">[Frontend &amp; Mobile]</span><br>
+        &nbsp;&nbsp;ReactJS, HTML5, CSS3, Tailwind CSS, Material-UI, Android SDK<br><br>
         <span class="highlight-purple bold">[Backend &amp; Databases]</span><br>
-        &nbsp;&nbsp;Node.js, Express.js, Spring Boot, REST APIs, MongoDB, MySQL<br><br>
+        &nbsp;&nbsp;Node.js, Express.js, Spring Boot, REST APIs, MongoDB, MySQL, PostgreSQL, Supabase<br><br>
         <span class="highlight-purple bold">[Security &amp; DevOps]</span><br>
         &nbsp;&nbsp;JWT, OAuth2, Git/GitHub, Docker, GitHub Actions CI/CD<br><br>
         <span class="highlight-purple bold">[Cloud &amp; Integrations]</span><br>
-        &nbsp;&nbsp;Google Gemini AI, Cloudinary, Automated Email Services
+        &nbsp;&nbsp;Supabase, Google Gemini AI, Cloudinary, EmailJS
       </div>
     `,
     projects: `
@@ -183,7 +183,19 @@ document.addEventListener('DOMContentLoaded', () => {
         
         <span class="highlight-blue bold">3. E-Commerce System - Full-Stack Application</span><br>
         &nbsp;&nbsp;<span class="text-muted">Stack: Node.js, Express, ReactJS, MongoDB, Docker, GitHub Actions</span><br>
-        &nbsp;&nbsp;High-capacity storefront application featuring containerized setups, CI/CD automated deployment pipelines, and advanced DB query indexing.
+        &nbsp;&nbsp;High-capacity storefront application featuring containerized setups, CI/CD automated deployment pipelines, and advanced DB query indexing.<br><br>
+        
+        <span class="highlight-blue bold">4. Yala Safari Sri Lanka - Safari Booking & Tourism Platform</span><br>
+        &nbsp;&nbsp;<span class="text-muted">Stack: HTML5/CSS3, JavaScript, Supabase, PostgreSQL, Vercel</span><br>
+        &nbsp;&nbsp;Official wildlife jeep safari booking website with real-time tour reservations, dynamic pricing, and an admin management dashboard.<br><br>
+        
+        <span class="highlight-blue bold">5. FinTrack - Android Personal Finance Tracking App</span><br>
+        &nbsp;&nbsp;<span class="text-muted">Stack: Kotlin, Android SDK, Jetpack Navigation, ViewBinding, Material Design</span><br>
+        &nbsp;&nbsp;Native Android application for tracking daily income/expenses, managing monthly category budgets, and visualizing spending breakdowns.<br><br>
+        
+        <span class="highlight-blue bold">6. Developer Portfolio - Personal Website</span><br>
+        &nbsp;&nbsp;<span class="text-muted">Stack: HTML5, CSS3, JavaScript, EmailJS, GitHub Pages</span><br>
+        &nbsp;&nbsp;Interactive personal developer portfolio featuring a custom CLI terminal emulator, glassmorphic styling, dynamic filtering, and EmailJS delivery.
       </div>
     `,
     education: `
@@ -286,14 +298,15 @@ document.addEventListener('DOMContentLoaded', () => {
       const filterValue = btn.getAttribute('data-filter');
 
       projectCards.forEach(card => {
-        const category = card.getAttribute('data-category');
+        const category = card.getAttribute('data-category') || '';
+        const categories = category.split(' ');
         
         // Handle subtle fade-in scaling transitions
         card.style.opacity = '0';
         card.style.transform = 'scale(0.95)';
         
         setTimeout(() => {
-          if (filterValue === 'all' || category === filterValue) {
+          if (filterValue === 'all' || category === filterValue || categories.includes(filterValue)) {
             card.style.display = 'flex';
             setTimeout(() => {
               card.style.opacity = '1';
