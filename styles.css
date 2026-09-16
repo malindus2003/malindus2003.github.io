@@ -1253,6 +1253,74 @@ section {
   color: var(--accent-cyan);
 }
 
+/* WhatsApp Action in Contact Section */
+.contact-whatsapp-cta {
+  margin-top: 2.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.btn-whatsapp {
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  color: #ffffff !important;
+  box-shadow: 0 4px 18px rgba(37, 211, 102, 0.3);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.72rem 1.45rem;
+  border-radius: var(--radius-full);
+  transition: all var(--transition-normal);
+  text-decoration: none;
+}
+
+.btn-whatsapp:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 26px rgba(37, 211, 102, 0.45);
+  color: #ffffff !important;
+}
+
+.btn-whatsapp svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.whatsapp-badge-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.whatsapp-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #25d366;
+  box-shadow: 0 0 8px #25d366;
+  animation: pulseDot 2s infinite;
+}
+
+.whatsapp-val {
+  color: #25d366 !important;
+}
+
+.contact-detail-item.whatsapp-item:hover .contact-detail-icon {
+  border-color: #25d366;
+  background: rgba(37, 211, 102, 0.12);
+  color: #25d366;
+}
+
+.footer-social-link.whatsapp-footer:hover {
+  color: #25d366;
+  border-color: #25d366;
+}
+
 /* Contact Form */
 .contact-form-panel {
   background: var(--bg-card);
@@ -1730,6 +1798,21 @@ textarea.form-input {
 
   .project-actions .btn {
     width: 100%;
+  }
+
+  .contact-whatsapp-cta {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.85rem;
+  }
+
+  .btn-whatsapp {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .whatsapp-badge-note {
+    justify-content: center;
   }
 
   .footer {
