@@ -1,7 +1,8 @@
 /**
- * Malindu Sankalpa - Premium Portfolio JS
- * Handles high-fidelity animations, interactive CLI console, dynamic project sorting,
- * form validations, dark/light theme switching, and scroll effects.
+ * Malindu Sankalpa - Modern Developer Portfolio JS
+ * Handles mouse spotlight tracking, scroll progress bar, 1-click email copy,
+ * interactive CLI console & quick tabs, dynamic project filtering,
+ * theme toggling, and EmailJS automated inquiries.
  */
 
 // Initialize EmailJS
@@ -10,43 +11,64 @@ emailjs.init('uf2InGcg4BykyjZFp');
 document.addEventListener('DOMContentLoaded', () => {
 
   /* ==========================================================================
-     Theme Switcher Logic (Dark Space vs. Premium Light)
+     1. Scroll Progress Bar
      ========================================================================== */
-  const themeToggle = document.getElementById('theme-toggle');
-  
-  // Set default theme from localStorage or system preference
-  const currentTheme = localStorage.getItem('theme') || 'dark';
-  document.documentElement.setAttribute('data-theme', currentTheme);
-
-  themeToggle.addEventListener('click', () => {
-    let targetTheme = 'dark';
-    if (document.documentElement.getAttribute('data-theme') === 'dark') {
-      targetTheme = 'light';
+  const scrollProgress = document.getElementById('scroll-progress');
+  const updateScrollProgress = () => {
+    const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+    if (totalHeight > 0 && scrollProgress) {
+      const progress = (window.scrollY / totalHeight) * 100;
+      scrollProgress.style.width = `${progress}%`;
     }
-    document.documentElement.setAttribute('data-theme', targetTheme);
-    localStorage.setItem('theme', targetTheme);
+  };
+  window.addEventListener('scroll', updateScrollProgress);
+  updateScrollProgress();
+
+
+  /* ==========================================================================
+     2. Interactive Mouse Spotlight on Cards
+     ========================================================================== */
+  const spotlightCards = document.querySelectorAll('.spotlight-card');
+  spotlightCards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty('--mouse-x', `${x}px`);
+      card.style.setProperty('--mouse-y', `${y}px`);
+    });
   });
 
 
   /* ==========================================================================
-     Sticky Header & Active Link Tracking
+     3. Theme Switcher Logic (Carbon Dark vs. Modern Light)
      ========================================================================== */
-  const header = document.getElementById('header');
+  const themeToggle = document.getElementById('theme-toggle');
+  const currentTheme = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', currentTheme);
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const activeTheme = document.documentElement.getAttribute('data-theme');
+      const targetTheme = activeTheme === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', targetTheme);
+      localStorage.setItem('theme', targetTheme);
+    });
+  }
+
+
+  /* ==========================================================================
+     4. Navigation Active Links Tracking & Mobile Menu
+     ========================================================================== */
   const navLinks = document.querySelectorAll('.nav-link');
   const sections = document.querySelectorAll('section');
+  const mobileToggle = document.getElementById('mobile-toggle');
+  const navMenu = document.getElementById('nav-links');
 
-  const handleScroll = () => {
-    // 1. Sticky Nav state
-    if (window.scrollY > 50) {
-      header.classList.add('header-scrolled');
-    } else {
-      header.classList.remove('header-scrolled');
-    }
-
-    // 2. Active nav link highlight on scroll
+  const handleNavScroll = () => {
     let currentId = '';
     sections.forEach(sec => {
-      const secTop = sec.offsetTop - 120;
+      const secTop = sec.offsetTop - 140;
       const secHeight = sec.offsetHeight;
       if (window.scrollY >= secTop && window.scrollY < secTop + secHeight) {
         currentId = sec.getAttribute('id');
@@ -61,247 +83,256 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
-  window.addEventListener('scroll', handleScroll);
-  handleScroll(); // Trigger immediately to resolve initial position
+  window.addEventListener('scroll', handleNavScroll);
+  handleNavScroll();
 
-
-  /* ==========================================================================
-     Mobile Burger Menu Toggle
-     ========================================================================== */
-  const mobileToggle = document.getElementById('mobile-toggle');
-  const navMenu = document.getElementById('nav-menu');
-
-  mobileToggle.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-  });
-
-  // Close mobile menu when a nav link is clicked
-  navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      navMenu.classList.remove('active');
+  if (mobileToggle && navMenu) {
+    mobileToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
     });
-  });
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+      });
+    });
+  }
 
 
   /* ==========================================================================
-     Typewriter Animation
+     5. 1-Click "Copy Email" Button with Toast
+     ========================================================================== */
+  const btnCopyEmail = document.getElementById('btn-copy-email');
+  const copyToast = document.getElementById('copy-toast');
+
+  if (btnCopyEmail && copyToast) {
+    btnCopyEmail.addEventListener('click', () => {
+      navigator.clipboard.writeText('malindusankalpa03@gmail.com').then(() => {
+        copyToast.classList.add('show');
+        setTimeout(() => {
+          copyToast.classList.remove('show');
+        }, 2200);
+      }).catch(() => {
+        // Fallback
+        window.location.href = 'mailto:malindusankalpa03@gmail.com';
+      });
+    });
+  }
+
+
+  /* ==========================================================================
+     6. Hero Typewriter Animation
      ========================================================================== */
   const typewriter = document.getElementById('typewriter');
   const words = [
     'Full-Stack Applications.',
-    'Scalable REST APIs.',
-    'Interactive User Experiences.',
-    'Secure Enterprise Architectures.'
+    'Interactive Web Interfaces.',
+    'Scalable REST Architectures.',
+    'Native Android Solutions.'
   ];
   let wordIndex = 0;
   let charIndex = 0;
   let isDeleting = false;
   let typingSpeed = 100;
 
-  const type = () => {
+  const typeLoop = () => {
     const currentWord = words[wordIndex];
-    
     if (isDeleting) {
-      // Deleting characters
       typewriter.textContent = currentWord.substring(0, charIndex - 1);
       charIndex--;
-      typingSpeed = 50; // Deletion is faster
+      typingSpeed = 45;
     } else {
-      // Adding characters
       typewriter.textContent = currentWord.substring(0, charIndex + 1);
       charIndex++;
-      typingSpeed = 120; // Natural typing pace
+      typingSpeed = 110;
     }
 
     if (!isDeleting && charIndex === currentWord.length) {
-      // Finished writing the word, wait before deleting
       isDeleting = true;
-      typingSpeed = 1800; // Hold word on screen
+      typingSpeed = 1900;
     } else if (isDeleting && charIndex === 0) {
-      // Finished deleting, move to next word
       isDeleting = false;
       wordIndex = (wordIndex + 1) % words.length;
-      typingSpeed = 500; // Brief pause before typing next
+      typingSpeed = 400;
     }
 
-    setTimeout(type, typingSpeed);
+    setTimeout(typeLoop, typingSpeed);
   };
 
   if (typewriter) {
-    type();
+    typeLoop();
   }
 
 
   /* ==========================================================================
-     Interactive Terminal Console Emulator
+     7. Interactive Developer CLI Terminal Emulator
      ========================================================================== */
   const terminalInput = document.getElementById('terminal-input');
   const terminalHistory = document.getElementById('terminal-history');
   const terminalBody = document.getElementById('terminal-body');
+  const quickCmdBtns = document.querySelectorAll('.quick-cmd-btn');
 
   const commands = {
     help: `
       <div class="terminal-output">
         Available commands:<br>
-        - <span class="highlight-cyan">about</span>       : Show brief professional bio<br>
-        - <span class="highlight-cyan">skills</span>      : List categorized technical proficiencies<br>
-        - <span class="highlight-cyan">projects</span>    : Detailed summary of full-stack systems<br>
-        - <span class="highlight-cyan">experience</span>  : Work experience &amp; academic background<br>
-        - <span class="highlight-cyan">education</span>   : Academic background &amp; credentials<br>
-        - <span class="highlight-cyan">contact</span>     : Contact details &amp; socials links<br>
-        - <span class="highlight-cyan">clear</span>       : Flush terminal display
+        - <span style="color:var(--accent-cyan); font-weight:600;">about</span>       : Show brief professional bio<br>
+        - <span style="color:var(--accent-cyan); font-weight:600;">experience</span>  : Work experience &amp; academic background<br>
+        - <span style="color:var(--accent-cyan); font-weight:600;">projects</span>    : Detailed summary of full-stack &amp; mobile systems<br>
+        - <span style="color:var(--accent-cyan); font-weight:600;">skills</span>      : List categorized technical proficiencies<br>
+        - <span style="color:var(--accent-cyan); font-weight:600;">contact</span>     : Contact details &amp; direct links<br>
+        - <span style="color:var(--accent-cyan); font-weight:600;">clear</span>       : Flush terminal display
       </div>
     `,
     about: `
       <div class="terminal-output">
-        <span class="highlight-blue bold">Malindu Sankalpa</span> is an Information Technology undergraduate with hands-on experience in full-stack software development. Skilled in developing scalable web applications, REST APIs, role-based authentications, and responsive UI structures.<br><br>
-        <span class="bold">Passions:</span> Scalable architectures, AI-integrations, clean OOP design patterns, and continuous learning of cutting-edge technology stacks.
+        <strong style="color:var(--accent-cyan);">Malindu Sankalpa</strong> is an Information Technology undergraduate at SLIIT and a Frontend Development Intern at Kangaroo Cabs (Pvt) Ltd.<br><br>
+        • <strong style="color:var(--text-primary);">Specialization:</strong> Full-Stack Web Development, Responsive UIs, RESTful Architectures, and Native Android Apps.<br>
+        • <strong style="color:var(--text-primary);">Philosophy:</strong> Clean, maintainable code, robust database modeling, and exceptional user experience.
       </div>
     `,
-    skills: `
+    experience: `
       <div class="terminal-output">
-        <span class="highlight-purple bold">[Programming Languages]</span><br>
-        &nbsp;&nbsp;Java, Kotlin, JavaScript, Python, PHP, C/C++<br><br>
-        <span class="highlight-purple bold">[Frontend &amp; Mobile]</span><br>
-        &nbsp;&nbsp;ReactJS, HTML5, CSS3, Tailwind CSS, Material-UI, Android SDK<br><br>
-        <span class="highlight-purple bold">[Backend &amp; Databases]</span><br>
-        &nbsp;&nbsp;Node.js, Express.js, Spring Boot, REST APIs, MongoDB, MySQL, PostgreSQL, Supabase<br><br>
-        <span class="highlight-purple bold">[Security &amp; DevOps]</span><br>
-        &nbsp;&nbsp;JWT, OAuth2, Git/GitHub, Docker, GitHub Actions CI/CD<br><br>
-        <span class="highlight-purple bold">[Cloud &amp; Integrations]</span><br>
-        &nbsp;&nbsp;Supabase, Google Gemini AI, Cloudinary, EmailJS
+        <span style="color:var(--accent-emerald); font-weight:700;">[Industry Experience]</span><br>
+        <strong style="color:var(--text-primary);">Kangaroo Cabs (Pvt) Ltd</strong><br>
+        &nbsp;&nbsp;<span style="color:var(--accent-cyan);">Frontend Development Intern</span> &bull; Present &bull; Colombo, Sri Lanka<br>
+        &nbsp;&nbsp;• Developing and optimizing high-performance web user interfaces for ride-hailing services.<br>
+        &nbsp;&nbsp;• Collaborating with engineering teams to connect frontend modules with backend REST APIs.<br><br>
+
+        <span style="color:var(--accent-indigo); font-weight:700;">[Academic Education]</span><br>
+        <strong style="color:var(--text-primary);">Sri Lanka Institute of Information Technology (SLIIT)</strong><br>
+        &nbsp;&nbsp;<span style="color:var(--accent-cyan);">BSc (Hons) in Information Technology Specializing in IT</span> &bull; June 2023 -- Present<br>
+        &nbsp;&nbsp;• Robust foundation in Data Structures, Algorithms, OOP Design, and Database Systems.<br>
+        &nbsp;&nbsp;• Advanced coursework: Web Application Engineering, Software Architecture, Data Science.
       </div>
     `,
     projects: `
       <div class="terminal-output">
-        <span class="highlight-blue bold">1. UniConnect - University Event Management Platform</span><br>
-        &nbsp;&nbsp;<span class="text-muted">Stack: Node.js, Express, ReactJS, MongoDB, Tailwind, Google Gemini AI</span><br>
-        &nbsp;&nbsp;University event logistics platform featuring JWT security, Google Gemini AI OCR for bank slip validations, and Cloudinary media pipelines.<br><br>
+        <strong style="color:var(--accent-cyan);">1. UniConnect - University Event Management Platform</strong><br>
+        &nbsp;&nbsp;Stack: Node.js, Express, ReactJS, MongoDB, Tailwind, Google Gemini AI<br>
+        &nbsp;&nbsp;Event logistics platform featuring Gemini AI OCR for bank slip verification &amp; ticketing.<br><br>
         
-        <span class="highlight-blue bold">2. EduReserve - Smart Campus Resource Management</span><br>
-        &nbsp;&nbsp;<span class="text-muted">Stack: Java, Spring Boot, ReactJS, MySQL, Google OAuth2, SSE</span><br>
-        &nbsp;&nbsp;Resource reservation platform for lab bookings and venue logistics featuring QR confirmations, SSE notifications, and administrative dashboards.<br><br>
+        <strong style="color:var(--accent-cyan);">2. EduReserve - Smart Campus Resource Management</strong><br>
+        &nbsp;&nbsp;Stack: Java, Spring Boot, ReactJS, MySQL, Google OAuth2, QR Verification<br>
+        &nbsp;&nbsp;Resource reservation platform for lab &amp; hall logistics with role permissions.<br><br>
         
-        <span class="highlight-blue bold">3. E-Commerce System - Full-Stack Application</span><br>
-        &nbsp;&nbsp;<span class="text-muted">Stack: Node.js, Express, ReactJS, MongoDB, Docker, GitHub Actions</span><br>
-        &nbsp;&nbsp;High-capacity storefront application featuring containerized setups, CI/CD automated deployment pipelines, and advanced DB query indexing.<br><br>
+        <strong style="color:var(--accent-cyan);">3. Yala Safari Sri Lanka - Safari Tour &amp; Booking Platform</strong><br>
+        &nbsp;&nbsp;Stack: HTML5/CSS3, JavaScript, Supabase, PostgreSQL, Vercel<br>
+        &nbsp;&nbsp;Official wildlife jeep safari booking website with real-time tour reservation portal.<br><br>
         
-        <span class="highlight-blue bold">4. Yala Safari Sri Lanka - Safari Booking & Tourism Platform</span><br>
-        &nbsp;&nbsp;<span class="text-muted">Stack: HTML5/CSS3, JavaScript, Supabase, PostgreSQL, Vercel</span><br>
-        &nbsp;&nbsp;Official wildlife jeep safari booking website with real-time tour reservations, dynamic pricing, and an admin management dashboard.<br><br>
+        <strong style="color:var(--accent-cyan);">4. FinTrack - Android Personal Finance Tracking App</strong><br>
+        &nbsp;&nbsp;Stack: Kotlin, Android SDK, Jetpack Navigation, ViewBinding, Material 3<br>
+        &nbsp;&nbsp;Native Android application for tracking daily income/expenses &amp; category budgets.<br><br>
         
-        <span class="highlight-blue bold">5. FinTrack - Android Personal Finance Tracking App</span><br>
-        &nbsp;&nbsp;<span class="text-muted">Stack: Kotlin, Android SDK, Jetpack Navigation, ViewBinding, Material Design</span><br>
-        &nbsp;&nbsp;Native Android application for tracking daily income/expenses, managing monthly category budgets, and visualizing spending breakdowns.<br><br>
+        <strong style="color:var(--accent-cyan);">5. E-Commerce System - Microservices Retail Platform</strong><br>
+        &nbsp;&nbsp;Stack: Node.js, Express, ReactJS, MongoDB, Docker, GitHub Actions<br>
+        &nbsp;&nbsp;Scalable storefront platform with containerized services and CI/CD pipelines.<br><br>
         
-        <span class="highlight-blue bold">6. Developer Portfolio - Personal Website</span><br>
-        &nbsp;&nbsp;<span class="text-muted">Stack: HTML5, CSS3, JavaScript, EmailJS, GitHub Pages</span><br>
-        &nbsp;&nbsp;Interactive personal developer portfolio featuring a custom CLI terminal emulator, glassmorphic styling, dynamic filtering, and EmailJS delivery.
+        <strong style="color:var(--accent-cyan);">6. Personal Developer Portfolio - Bento Grid Website</strong><br>
+        &nbsp;&nbsp;Stack: HTML5, CSS3, JavaScript, EmailJS, GitHub Pages<br>
+        &nbsp;&nbsp;Modern developer portfolio with interactive CLI terminal and automated inquiries.
       </div>
     `,
-    education: `
+    skills: `
       <div class="terminal-output">
-        <span class="highlight-cyan bold">[Work Experience]</span><br>
-        <span class="bold">Kangaroo Cabs (Pvt) Ltd</span><br>
-        &nbsp;&nbsp;<span class="highlight-blue">Frontend Development Intern</span><br>
-        &nbsp;&nbsp;<span class="text-muted">Present | Colombo, Sri Lanka</span><br>
-        &nbsp;&nbsp;• Developing and maintaining responsive web user interfaces for ride-hailing operations.<br>
-        &nbsp;&nbsp;• Collaborating with engineering teams to integrate frontend components with backend REST APIs.<br><br>
-        
-        <span class="highlight-cyan bold">[Academic Education]</span><br>
-        <span class="bold">Sri Lanka Institute of Information Technology (SLIIT)</span><br>
-        &nbsp;&nbsp;<span class="highlight-blue">BSc (Hons) in Information Technology Specializing in IT</span><br>
-        &nbsp;&nbsp;<span class="text-muted">June 2023 -- Present | Malabe, Sri Lanka</span><br>
-        &nbsp;&nbsp;• Excellent grasp of Data Structures, Algorithms, Object-Oriented Programming (OOP) and Database Design.<br>
-        &nbsp;&nbsp;• Key coursework includes: Web Application Development, Software Engineering Architecture, Data Science.
+        <span style="color:var(--accent-purple); font-weight:700;">[Languages]</span> Java, Kotlin, JavaScript (ES6+), Python, PHP, C/C++<br><br>
+        <span style="color:var(--accent-purple); font-weight:700;">[Frontend &amp; Mobile]</span> ReactJS, Android SDK, HTML5/CSS3, Tailwind CSS, Material-UI<br><br>
+        <span style="color:var(--accent-purple); font-weight:700;">[Backend &amp; Cloud]</span> Spring Boot, Node.js, Express.js, Supabase, RESTful APIs<br><br>
+        <span style="color:var(--accent-purple); font-weight:700;">[Databases]</span> PostgreSQL, MongoDB, MySQL, Database Modeling<br><br>
+        <span style="color:var(--accent-purple); font-weight:700;">[DevOps &amp; Tools]</span> Git, GitHub, Docker, CI/CD, GitHub Actions, Postman<br><br>
+        <span style="color:var(--accent-purple); font-weight:700;">[Integrations]</span> Google Gemini AI, Cloudinary, JWT, OAuth2, EmailJS
       </div>
     `,
     contact: `
       <div class="terminal-output">
-        • <span class="bold">Location:</span> Tissamaharama, Sri Lanka<br>
-        • <span class="bold">Email:</span> <a href="mailto:malindusankalpa03@gmail.com" class="highlight-cyan">malindusankalpa03@gmail.com</a><br>
-        • <span class="bold">Mobile:</span> +94 76 472 9153<br>
-        • <span class="bold">LinkedIn:</span> <a href="https://www.linkedin.com/in/malindu-maddumage-5716a1352/" target="_blank" class="highlight-cyan">malindu-maddumage</a><br>
-        • <span class="bold">GitHub:</span> <a href="https://github.com/malindus2003" target="_blank" class="highlight-cyan">malindus2003</a>
+        • <strong style="color:var(--text-primary);">Email:</strong> <a href="mailto:malindusankalpa03@gmail.com" style="color:var(--accent-cyan);">malindusankalpa03@gmail.com</a><br>
+        • <strong style="color:var(--text-primary);">Mobile:</strong> +94 76 472 9153<br>
+        • <strong style="color:var(--text-primary);">LinkedIn:</strong> <a href="https://www.linkedin.com/in/malindu-maddumage-5716a1352/" target="_blank" style="color:var(--accent-cyan);">malindu-maddumage</a><br>
+        • <strong style="color:var(--text-primary);">GitHub:</strong> <a href="https://github.com/malindus2003" target="_blank" style="color:var(--accent-cyan);">malindus2003</a><br>
+        • <strong style="color:var(--text-primary);">Location:</strong> Tissamaharama / Colombo, Sri Lanka
       </div>
     `
   };
-  commands.experience = commands.education;
 
-  const handleCommandInput = (e) => {
-    if (e.key === 'Enter') {
-      const inputVal = terminalInput.value.trim();
-      const command = inputVal.toLowerCase();
-      
-      // 1. Create echo line
-      const echoLine = document.createElement('div');
-      echoLine.className = 'terminal-line';
-      echoLine.innerHTML = `
-        <div class="terminal-prompt-line">
-          <span class="terminal-prompt-sym">➜</span>
-          <span class="terminal-user">guest@malindu.dev</span>
-          <span class="terminal-command">:~</span>
-          <span class="highlight-cyan bold" style="margin-left: 0.5rem;">${escapeHTML(inputVal)}</span>
-        </div>
-      `;
-      
-      terminalHistory.appendChild(echoLine);
-      
-      // 2. Parse and evaluate command
-      if (command !== '') {
-        if (command === 'clear') {
-          terminalHistory.innerHTML = '';
-        } else if (commands.hasOwnProperty(command)) {
-          const outputLine = document.createElement('div');
-          outputLine.className = 'terminal-line';
-          outputLine.innerHTML = commands[command];
-          terminalHistory.appendChild(outputLine);
-        } else {
-          const errLine = document.createElement('div');
-          errLine.className = 'terminal-line';
-          errLine.innerHTML = `
-            <div class="terminal-output" style="color: #ef4444;">
-              Command not found: <span class="bold">${escapeHTML(inputVal)}</span>. Type <span class="bold" style="color: var(--text-primary);">help</span> for available commands.
-            </div>
-          `;
-          terminalHistory.appendChild(errLine);
-        }
-      }
-      
-      // 3. Clear and auto-scroll
-      terminalInput.value = '';
-      setTimeout(() => {
-        terminalBody.scrollTop = terminalBody.scrollHeight;
-      }, 30);
-    }
-  };
+  commands.education = commands.experience;
 
   const escapeHTML = (str) => {
-    return str.replace(/[&<>'"]/g, 
-      tag => ({
-        '&': '&amp;',
-        '<': '&lt;',
-        '>': '&gt;',
-        "'": '&#39;',
-        '"': '&quot;'
-      }[tag] || tag)
-    );
+    return str.replace(/[&<>'"]/g, tag => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      "'": '&#39;',
+      '"': '&quot;'
+    }[tag] || tag));
+  };
+
+  const executeCommand = (cmdText) => {
+    const rawCmd = cmdText.trim();
+    const command = rawCmd.toLowerCase();
+
+    // Echo Line
+    const echoLine = document.createElement('div');
+    echoLine.className = 'terminal-line';
+    echoLine.innerHTML = `
+      <div class="terminal-prompt-line">
+        <span class="terminal-prompt-sym">➜</span>
+        <span class="terminal-user">guest@malindu.dev</span>
+        <span class="terminal-command">:~</span>
+        <span style="color:var(--accent-cyan); font-weight:600; margin-left:0.5rem;">${escapeHTML(rawCmd)}</span>
+      </div>
+    `;
+    terminalHistory.appendChild(echoLine);
+
+    if (command !== '') {
+      if (command === 'clear') {
+        terminalHistory.innerHTML = '';
+      } else if (commands.hasOwnProperty(command)) {
+        const out = document.createElement('div');
+        out.className = 'terminal-line';
+        out.innerHTML = commands[command];
+        terminalHistory.appendChild(out);
+      } else {
+        const err = document.createElement('div');
+        err.className = 'terminal-line';
+        err.innerHTML = `
+          <div class="terminal-output" style="color:#ef4444;">
+            Command not found: <strong>${escapeHTML(rawCmd)}</strong>. Type <span style="color:var(--text-primary); font-weight:600;">help</span> for available commands.
+          </div>
+        `;
+        terminalHistory.appendChild(err);
+      }
+    }
+
+    if (terminalInput) terminalInput.value = '';
+    setTimeout(() => {
+      terminalBody.scrollTop = terminalBody.scrollHeight;
+    }, 30);
   };
 
   if (terminalInput) {
-    terminalInput.addEventListener('keydown', handleCommandInput);
+    terminalInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        executeCommand(terminalInput.value);
+      }
+    });
   }
+
+  quickCmdBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const cmd = btn.getAttribute('data-cmd');
+      if (cmd) executeCommand(cmd);
+    });
+  });
 
 
   /* ==========================================================================
-     Project Categories Filtering
+     8. Featured Projects Filtering
      ========================================================================== */
   const filterBtns = document.querySelectorAll('.filter-btn');
   const projectCards = document.querySelectorAll('.project-card');
 
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      // Remove active class from other buttons
       filterBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
 
@@ -310,11 +341,10 @@ document.addEventListener('DOMContentLoaded', () => {
       projectCards.forEach(card => {
         const category = card.getAttribute('data-category') || '';
         const categories = category.split(' ');
-        
-        // Handle subtle fade-in scaling transitions
+
         card.style.opacity = '0';
-        card.style.transform = 'scale(0.95)';
-        
+        card.style.transform = 'scale(0.96)';
+
         setTimeout(() => {
           if (filterValue === 'all' || category === filterValue || categories.includes(filterValue)) {
             card.style.display = 'flex';
@@ -325,14 +355,14 @@ document.addEventListener('DOMContentLoaded', () => {
           } else {
             card.style.display = 'none';
           }
-        }, 200);
+        }, 180);
       });
     });
   });
 
 
   /* ==========================================================================
-     Interactive Contact Form Validation & Submission
+     9. Interactive Contact Form with EmailJS Integration
      ========================================================================== */
   const contactForm = document.getElementById('contact-form');
   const formName = document.getElementById('form-name');
@@ -344,61 +374,58 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const validators = {
     name: () => {
-      const isValid = formName.value.trim() !== '';
-      toggleFeedback(formName, document.getElementById('feedback-name'), isValid);
-      return isValid;
+      const valid = formName.value.trim() !== '';
+      toggleField(formName, document.getElementById('feedback-name'), valid);
+      return valid;
     },
     email: () => {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      const isValid = emailRegex.test(formEmail.value.trim());
-      toggleFeedback(formEmail, document.getElementById('feedback-email'), isValid);
-      return isValid;
+      const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const valid = regex.test(formEmail.value.trim());
+      toggleField(formEmail, document.getElementById('feedback-email'), valid);
+      return valid;
     },
     subject: () => {
-      const isValid = formSubject.value.trim() !== '';
-      toggleFeedback(formSubject, document.getElementById('feedback-subject'), isValid);
-      return isValid;
+      const valid = formSubject.value.trim() !== '';
+      toggleField(formSubject, document.getElementById('feedback-subject'), valid);
+      return valid;
     },
     message: () => {
-      const isValid = formMessage.value.trim() !== '';
-      toggleFeedback(formMessage, document.getElementById('feedback-message'), isValid);
-      return isValid;
+      const valid = formMessage.value.trim() !== '';
+      toggleField(formMessage, document.getElementById('feedback-message'), valid);
+      return valid;
     }
   };
 
-  const toggleFeedback = (input, feedbackEl, isValid) => {
+  const toggleField = (input, feedbackEl, isValid) => {
     if (isValid) {
       input.style.borderColor = '';
-      feedbackEl.classList.remove('error');
+      if (feedbackEl) feedbackEl.classList.remove('error');
     } else {
       input.style.borderColor = '#ef4444';
-      feedbackEl.classList.add('error');
+      if (feedbackEl) feedbackEl.classList.add('error');
     }
   };
 
-  // Run validators on input changes to give responsive warnings
-  formName.addEventListener('input', validators.name);
-  formEmail.addEventListener('input', validators.email);
-  formSubject.addEventListener('input', validators.subject);
-  formMessage.addEventListener('input', validators.message);
+  if (formName) formName.addEventListener('input', validators.name);
+  if (formEmail) formEmail.addEventListener('input', validators.email);
+  if (formSubject) formSubject.addEventListener('input', validators.subject);
+  if (formMessage) formMessage.addEventListener('input', validators.message);
 
   if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
       e.preventDefault();
 
-      // Trigger all validators
       const isNameValid = validators.name();
       const isEmailValid = validators.email();
       const isSubjectValid = validators.subject();
       const isMessageValid = validators.message();
 
       if (isNameValid && isEmailValid && isSubjectValid && isMessageValid) {
-        // Change submit button to loading state
         btnSubmit.disabled = true;
         const originalText = btnSubmit.innerHTML;
         btnSubmit.innerHTML = `
           Sending...
-          <svg style="animation: spin 1s infinite linear;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg style="animation: spin 1s infinite linear; margin-left:0.5rem;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="12" y1="2" x2="12" y2="6"></line>
             <line x1="12" y1="18" x2="12" y2="22"></line>
             <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line>
@@ -410,7 +437,6 @@ document.addEventListener('DOMContentLoaded', () => {
           </svg>
         `;
 
-        // Style helper for loader spinning
         if (!document.getElementById('spin-keyframe-style')) {
           const style = document.createElement('style');
           style.id = 'spin-keyframe-style';
@@ -418,50 +444,41 @@ document.addEventListener('DOMContentLoaded', () => {
           document.head.appendChild(style);
         }
 
-        // Build template parameters matching EmailJS template variables
         const now = new Date();
-        const timeString = now.toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' });
-
         const templateParams = {
           name: formName.value.trim(),
           email: formEmail.value.trim(),
           subject: formSubject.value.trim(),
           message: formMessage.value.trim(),
-          time: timeString
+          time: now.toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' })
         };
 
-        // Send email via EmailJS
         emailjs.send('service_dxl1907', 'template_e5bnmh5', templateParams)
           .then(() => {
-            // Success Feedback
             formStatus.style.display = '';
             formStatus.className = 'form-status success';
-            formStatus.innerHTML = `<span class="bold">Success!</span> Thank you, ${escapeHTML(formName.value.trim())}. Your message has been sent successfully. I will get back to you shortly!`;
+            formStatus.innerHTML = `<strong>Success!</strong> Thank you, ${escapeHTML(formName.value.trim())}. Your message has been sent successfully. I will get back to you shortly!`;
 
-            // Reset form fields
             contactForm.reset();
             btnSubmit.disabled = false;
             btnSubmit.innerHTML = originalText;
 
-            // Clear status after 8 seconds
             setTimeout(() => {
               formStatus.style.display = 'none';
             }, 8000);
           })
           .catch((error) => {
-            // Error Feedback
             formStatus.style.display = '';
             formStatus.className = 'form-status error';
-            formStatus.innerHTML = `<span class="bold">Oops!</span> Something went wrong. Please try again or email me directly at <a href="mailto:malindusankalpa03@gmail.com" style="color:inherit;text-decoration:underline;">malindusankalpa03@gmail.com</a>.`;
+            formStatus.innerHTML = `<strong>Error:</strong> Failed to send message. Please email me directly at <a href="mailto:malindusankalpa03@gmail.com" style="color:inherit;text-decoration:underline;">malindusankalpa03@gmail.com</a>.`;
             console.error('EmailJS error:', error);
 
             btnSubmit.disabled = false;
             btnSubmit.innerHTML = originalText;
           });
       } else {
-        // Scroll to the first error input
         const firstError = document.querySelector('.form-feedback.error');
-        if (firstError) {
+        if (firstError && firstError.previousElementSibling) {
           firstError.previousElementSibling.focus();
         }
       }
